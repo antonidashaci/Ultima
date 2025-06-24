@@ -1,0 +1,23 @@
+# ULTIMA Framework Dependencies
+# Core async and system libraries
+
+# No additional dependencies required for foundation
+# System uses only Python standard library:
+# - asyncio (async/await support)
+# - pathlib (cross-platform paths)
+# - json (serialization)
+# - logging (structured logging)
+# - subprocess (system commands)
+# - signal (graceful shutdown)
+
+# Future dependencies will be added as agents are implemented:
+# - requests (HTTP client for web agents)
+# - playwright (browser automation)
+# - pyautogui (GUI automation)
+# - ollama-python (local LLM integration)
+# - docker (container management)
+
+# Development dependencies:
+# - pytest (testing framework)
+# - black (code formatting)
+# - mypy (type checking) 
