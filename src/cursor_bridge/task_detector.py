@@ -7,7 +7,7 @@ import re
 import time
 import json
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Set
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import logging
@@ -33,20 +33,27 @@ class TaskDefinition:
         """Parse task comment into structured data"""
         # Match patterns like:
         # // #AI_TASK: Create a simple website
-        # // #AI_TASK: Build Android game [priority:high] [type:mobile]
+        # # #AI_TASK: Build Android game [priority:high] [type:mobile]
         
-        # Basic task extraction
-        task_match = re.search(r'#AI_TASK:\s*([^[\n]+)', self.raw_text)
+        # Improved regex to handle different comment styles
+        task_match = re.search(r'#AI_TASK:\s*([^[\n\r]+)', self.raw_text)
         if not task_match:
             return {}
         
         description = task_match.group(1).strip()
+        
+        # Skip empty descriptions or invalid patterns
+        if not description or len(description) < 5:
+            return {}
         
         # Extract optional parameters in brackets
         params = {}
         param_matches = re.findall(r'\[(\w+):([^\]]+)\]', self.raw_text)
         for key, value in param_matches:
             params[key] = value.strip()
+        
+        # Clean description from parameters
+        description = re.sub(r'\s*\[[\w:]+\]', '', description).strip()
         
         # Infer task type from description
         task_type = self._infer_task_type(description, params.get('type'))

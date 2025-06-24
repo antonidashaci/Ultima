@@ -1,0 +1,15 @@
+{
+  "id": "b8b7b5d5a653",
+  "status": "pending",
+  "created_at": 1750800936.1551232,
+  "description": "Create a file manager utility",
+  "type": "file_operations",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "test_cursor_task.py",
+    "source_line": 6,
+    "raw_comment": "# #AI_TASK: Create a file manager utility [priority:medium] [type:file_operations]",
+    "priority": "medium",
+    "type": "file_operations"
+  }
+}

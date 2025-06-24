@@ -1,0 +1,15 @@
+{
+  "id": "21106aac3c02",
+  "status": "pending",
+  "created_at": 1750800936.087752,
+  "description": "Create a simple file manager utility",
+  "type": "file_operations",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_cursor_integration.py",
+    "source_line": 60,
+    "raw_comment": "# #AI_TASK: Create a simple file manager utility [priority:medium] [type:file_operations]",
+    "priority": "medium",
+    "type": "file_operations"
+  }
+}

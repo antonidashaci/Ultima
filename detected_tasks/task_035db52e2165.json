@@ -1,0 +1,15 @@
+{
+  "id": "035db52e2165",
+  "status": "pending",
+  "created_at": 1750800936.0859954,
+  "description": "Create REST API for todo management",
+  "type": "api_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/simple_cursor_test.py",
+    "source_line": 21,
+    "raw_comment": "\"# #AI_TASK: Create REST API for todo management [type:api_development] [priority:medium]\"",
+    "type": "api_development",
+    "priority": "medium"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "a010f48dd7a3",
+  "status": "pending",
+  "created_at": 1750800936.0941393,
+  "description": "Build Android game",
+  "type": "mobile",
+  "priority": "high",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/src/cursor_bridge/task_detector.py",
+    "source_line": 36,
+    "raw_comment": "# # #AI_TASK: Build Android game [priority:high] [type:mobile]",
+    "priority": "high",
+    "type": "mobile"
+  }
+}
