@@ -3,6 +3,8 @@
 
 # Production dependencies
 watchdog>=3.0.0  # File system monitoring for Cursor integration
+psutil>=5.9.0    # System monitoring and resource checking
+requests>=2.31.0 # HTTP client for AI agent Ollama integration
 
 # No additional dependencies required for foundation
 # System uses only Python standard library:
@@ -14,10 +16,8 @@ watchdog>=3.0.0  # File system monitoring for Cursor integration
 # - signal (graceful shutdown)
 
 # Future dependencies will be added as agents are implemented:
-# - requests (HTTP client for web agents)
 # - playwright (browser automation)
 # - pyautogui (GUI automation)
-# - ollama-python (local LLM integration)
 # - docker (container management)
 
 # Development dependencies:

@@ -12,6 +12,10 @@ from typing import Dict, List, Any, Optional, Type
 from dataclasses import dataclass
 
 from .base_agent import BaseAgent, Task, TaskStatus
+from .file_agent import FileAgent
+from .diagnostic_agent import DiagnosticAgent
+from .web_agent import WebAgent
+from .ai_agent import AIAgent
 
 
 @dataclass
@@ -237,4 +241,37 @@ class NeoOrchestrator:
         if health_status["issues"]:
             health_status["overall"] = "degraded"
         
-        return health_status 
+        return health_status
+
+    async def setup_agents(self):
+        """Initialize all available agents"""
+        # Register agent classes
+        self.register_agent_class("file", FileAgent)
+        self.register_agent_class("diagnostic", DiagnosticAgent)
+        self.register_agent_class("web", WebAgent)
+        self.register_agent_class("ai", AIAgent)
+        
+        # Spawn default agents
+        file_agent = await self.spawn_agent("file", "file_agent_01")
+        diagnostic_agent = await self.spawn_agent("diagnostic", "diagnostic_agent_01")
+        web_agent = await self.spawn_agent("web", "web_agent_01")
+        ai_agent = await self.spawn_agent("ai", "ai_agent_01")
+        
+        # Start agents
+        await self.start_agent("file_agent_01")
+        await self.start_agent("diagnostic_agent_01")
+        await self.start_agent("web_agent_01")
+        await self.start_agent("ai_agent_01")
+        
+        print(f"Initialized {len(self.agents)} agents")
+        
+        # Create agent directories
+        for agent in self.agents.values():
+            agent_dir = self.workspace_path / "agents" / agent.name
+            agent_dir.mkdir(parents=True, exist_ok=True)
+            
+            log_dir = self.workspace_path / "logs" / agent.name
+            log_dir.mkdir(parents=True, exist_ok=True)
+            
+            task_dir = self.workspace_path / "tasks" / agent.name
+            task_dir.mkdir(parents=True, exist_ok=True) 
