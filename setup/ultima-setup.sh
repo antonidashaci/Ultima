@@ -13,19 +13,13 @@ sudo apt install -y git curl wget unzip build-essential \
   software-properties-common jq libfuse2
 
 echo "🐳 3/7  Installing Docker & nvidia-docker2..."
-if ! command -v docker &> /dev/null; then
-  sudo apt install -y docker.io
-  sudo systemctl enable --now docker
-  sudo usermod -aG docker $USER
-fi
-if ! dpkg -l | grep -q nvidia-docker2; then
-  distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-  curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
-  curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-    sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-  sudo apt update && sudo apt install -y nvidia-docker2
-  sudo systemctl restart docker
-fi
+distribution="ubuntu22.04"
+curl -s -L https://nvidia.github.io/libnvidia-container/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+sudo apt update
+sudo apt install -y docker.io nvidia-docker2
+sudo systemctl enable --now docker
 
 echo "🌐 4/7  Installing Node via NVM..."
 if [ ! -d "$HOME/.nvm" ]; then
@@ -43,7 +37,7 @@ pip install --upgrade pip
 
 echo "🔐 6/7  Checking SSH key..."
 if [ ! -f "$HOME/.ssh/id_ed25519.pub" ]; then
-  ssh-keygen -t ed25519 -C "$USER@$(hostname)"
+  ssh-keygen -t ed25519 -C "$USER@$(hostname)" -f "$HOME/.ssh/id_ed25519" -N ""
   echo "👉  Add this key to GitHub:"
   cat ~/.ssh/id_ed25519.pub
 fi
@@ -51,4 +45,4 @@ fi
 echo "📁 7/7  Confirming folder structure..."
 tree -d -L 2 ~/Ultima || true
 
-echo "✅  SETUP COMPLETE.  Run:  source ~/ultima-venv/bin/activate" 
+echo "✅  SETUP COMPLETE. Run: source ~/ultima-venv/bin/activate" 
