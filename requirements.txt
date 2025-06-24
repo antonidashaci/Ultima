@@ -1,6 +1,9 @@
 # ULTIMA Framework Dependencies
 # Core async and system libraries
 
+# Production dependencies
+watchdog>=3.0.0  # File system monitoring for Cursor integration
+
 # No additional dependencies required for foundation
 # System uses only Python standard library:
 # - asyncio (async/await support)

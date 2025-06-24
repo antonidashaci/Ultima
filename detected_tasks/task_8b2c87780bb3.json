@@ -1,0 +1,13 @@
+{
+  "id": "8b2c87780bb3",
+  "status": "pending",
+  "created_at": 1750797504.955353,
+  "description": "\\s*(",
+  "type": "general_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/src/cursor_bridge/task_detector.py",
+    "source_line": 39,
+    "raw_comment": "task_match = re.search(r'#AI_TASK:\\s*([^[\\n]+)', self.raw_text)"
+  }
+}

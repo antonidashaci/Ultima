@@ -1,0 +1,15 @@
+{
+  "id": "d2644281a7fb",
+  "status": "pending",
+  "created_at": 1750797504.9486678,
+  "description": "Build a REST API for todo management",
+  "type": "api_development",
+  "priority": "high",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_cursor_integration.py",
+    "source_line": 15,
+    "raw_comment": "# #AI_TASK: Build a REST API for todo management [priority:high] [type:api_development]",
+    "priority": "high",
+    "type": "api_development"
+  }
+}

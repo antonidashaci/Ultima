@@ -1,0 +1,13 @@
+{
+  "id": "6a74d8bd376e",
+  "status": "pending",
+  "created_at": 1750797504.955179,
+  "description": "Create a simple website",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/src/cursor_bridge/task_detector.py",
+    "source_line": 35,
+    "raw_comment": "# // #AI_TASK: Create a simple website"
+  }
+}

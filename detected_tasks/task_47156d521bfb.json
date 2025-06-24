@@ -1,0 +1,14 @@
+{
+  "id": "47156d521bfb",
+  "status": "pending",
+  "created_at": 1750797504.948945,
+  "description": "Generate unit tests for existing functions",
+  "type": "testing",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_cursor_integration.py",
+    "source_line": 31,
+    "raw_comment": "# #AI_TASK: Generate unit tests for existing functions [type:testing]",
+    "type": "testing"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "57aee12b8b75",
+  "status": "pending",
+  "created_at": 1750797504.948467,
+  "description": "Create a simple portfolio website with HTML and CSS",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_cursor_integration.py",
+    "source_line": 9,
+    "raw_comment": "# #AI_TASK: Create a simple portfolio website with HTML and CSS"
+  }
+}

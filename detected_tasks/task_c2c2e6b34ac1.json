@@ -1,0 +1,14 @@
+{
+  "id": "c2c2e6b34ac1",
+  "status": "pending",
+  "created_at": 1750797504.9487672,
+  "description": "Create Android game with simple graphics",
+  "type": "mobile_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_cursor_integration.py",
+    "source_line": 21,
+    "raw_comment": "# #AI_TASK: Create Android game with simple graphics [type:mobile_development]",
+    "type": "mobile_development"
+  }
+}

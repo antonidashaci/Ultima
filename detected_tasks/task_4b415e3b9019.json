@@ -1,0 +1,13 @@
+{
+  "id": "4b415e3b9019",
+  "status": "pending",
+  "created_at": 1750797504.955439,
+  "description": "' in line:",
+  "type": "general_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/src/cursor_bridge/task_detector.py",
+    "source_line": 136,
+    "raw_comment": "if '#AI_TASK:' in line:"
+  }
+}

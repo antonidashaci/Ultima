@@ -1,0 +1,14 @@
+{
+  "id": "73ce823c12a5",
+  "status": "pending",
+  "created_at": 1750797504.9488616,
+  "description": "Organize project files and create backup system",
+  "type": "file_operations",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_cursor_integration.py",
+    "source_line": 23,
+    "raw_comment": "# #AI_TASK: Organize project files and create backup system [priority:medium]",
+    "priority": "medium"
+  }
+}

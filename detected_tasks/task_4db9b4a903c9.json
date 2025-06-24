@@ -1,0 +1,13 @@
+{
+  "id": "4db9b4a903c9",
+  "status": "pending",
+  "created_at": 1750797504.9522033,
+  "description": "Create Android game` comments",
+  "type": "mobile_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/plans/phase_1_roadmap.md",
+    "source_line": 13,
+    "raw_comment": "- Parses `// #AI_TASK: Create Android game` comments"
+  }
+}

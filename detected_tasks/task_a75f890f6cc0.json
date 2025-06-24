@@ -1,0 +1,13 @@
+{
+  "id": "a75f890f6cc0",
+  "status": "pending",
+  "created_at": 1750797504.9528372,
+  "description": "Build REST API for todo app` \u2192 Working API",
+  "type": "mobile_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/plans/phase_1_roadmap.md",
+    "source_line": 117,
+    "raw_comment": "- **API Dev**: `// #AI_TASK: Build REST API for todo app` \u2192 Working API"
+  }
+}
