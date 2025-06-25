@@ -1,0 +1,20 @@
+{
+  "id": "a4ec6951-12f9-45c3-b228-e3447888d1f1",
+  "type": "file_create",
+  "description": "Create demo file with content",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T19:11:38.034007",
+  "updated_at": "2025-06-25T19:11:38.037003",
+  "metadata": {
+    "path": "/home/emre/Ultima/workspace/demo.txt",
+    "content": "Hello from ULTIMA!\nThis file was created by FileAgent.\n",
+    "result": {
+      "path": "/home/emre/Ultima/workspace/demo.txt",
+      "size": 55,
+      "created": true
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

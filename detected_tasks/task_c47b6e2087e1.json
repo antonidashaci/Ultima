@@ -1,0 +1,15 @@
+{
+  "id": "c47b6e2087e1",
+  "status": "pending",
+  "created_at": 1750885235.6898408,
+  "description": "Create a Python calculator with GUI",
+  "type": "desktop_development",
+  "priority": "high",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_complete_cursor_workflow.py",
+    "source_line": 26,
+    "raw_comment": "task_comment = \"# #AI_TASK: Create a Python calculator with GUI [priority:high] [type:desktop_development]\"",
+    "priority": "high",
+    "type": "desktop_development"
+  }
+}

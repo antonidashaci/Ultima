@@ -1,0 +1,19 @@
+{
+  "id": "a813b0cd-a537-462b-bf55-f1aeec732f82",
+  "type": "file_read",
+  "description": "Read demo file content",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T19:10:24.398162",
+  "updated_at": "2025-06-25T19:10:24.399484",
+  "metadata": {
+    "path": "/home/emre/Ultima/workspace/demo.txt",
+    "result": {
+      "path": "/home/emre/Ultima/workspace/demo.txt",
+      "content": "Hello from ULTIMA!\nThis file was created by FileAgent.\n",
+      "size": 55
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

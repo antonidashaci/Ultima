@@ -1,0 +1,14 @@
+{
+  "id": "3ef946dc00e3",
+  "status": "pending",
+  "created_at": 1750885235.6936836,
+  "description": "Make a habit tracker with streaks",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 18,
+    "raw_comment": "# #AI_TASK: Make a habit tracker with streaks [type:web_development]",
+    "type": "web_development"
+  }
+}

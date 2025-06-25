@@ -1,0 +1,14 @@
+{
+  "id": "e313ab711e0b",
+  "status": "pending",
+  "created_at": 1750885235.6930442,
+  "description": "Make an expense tracker with categories",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 13,
+    "raw_comment": "# #AI_TASK: Make an expense tracker with categories [type:web_development]",
+    "type": "web_development"
+  }
+}

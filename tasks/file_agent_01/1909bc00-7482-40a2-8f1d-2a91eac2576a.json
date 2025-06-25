@@ -1,0 +1,20 @@
+{
+  "id": "1909bc00-7482-40a2-8f1d-2a91eac2576a",
+  "type": "file_copy",
+  "description": "Copy demo file to project directory",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T19:11:39.036278",
+  "updated_at": "2025-06-25T19:11:39.038911",
+  "metadata": {
+    "source": "/home/emre/Ultima/workspace/demo.txt",
+    "destination": "/home/emre/Ultima/workspace/demo_project/README.txt",
+    "result": {
+      "source": "/home/emre/Ultima/workspace/demo.txt",
+      "destination": "/home/emre/Ultima/workspace/demo_project/README.txt",
+      "copied": true
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

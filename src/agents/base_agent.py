@@ -33,7 +33,7 @@ class Task:
     created_at: datetime
     updated_at: datetime
     metadata: Dict[str, Any]
-    dependencies: List[str] = None
+    dependencies: Optional[List[str]] = None
     output_path: Optional[str] = None
     
     def to_dict(self) -> Dict[str, Any]:
@@ -64,30 +64,43 @@ class BaseAgent(ABC):
         self.workspace_path = workspace_path
         self.task_queue = asyncio.Queue()
         self.active_tasks: Dict[str, Task] = {}
-        self.logger = self._setup_logger()
         self.is_running = False
-        
-        # Create agent-specific directories
+
+        # Create agent-specific directories first (needed for file logging)
         self.agent_dir = workspace_path / "agents" / name
         self.logs_dir = workspace_path / "logs" / name
         self.tasks_dir = workspace_path / "tasks" / name
-        
+
         for dir_path in [self.agent_dir, self.logs_dir, self.tasks_dir]:
             dir_path.mkdir(parents=True, exist_ok=True)
+
+        # Setup logger after dirs exist
+        self.logger = self._setup_logger()
     
     def _setup_logger(self) -> logging.Logger:
         """Setup agent-specific logger"""
         logger = logging.getLogger(f"ultima.{self.name}")
         logger.setLevel(logging.INFO)
         
-        # Prevent duplicate handlers
         if not logger.handlers:
-            handler = logging.StreamHandler()
             formatter = logging.Formatter(
                 f'%(asctime)s - {self.name} - %(levelname)s - %(message)s'
             )
-            handler.setFormatter(formatter)
-            logger.addHandler(handler)
+
+            # Console handler
+            console_handler = logging.StreamHandler()
+            console_handler.setFormatter(formatter)
+            logger.addHandler(console_handler)
+
+            # File handler (logs/<agent>/<agent>.log)
+            try:
+                file_path = self.workspace_path / "logs" / self.name / f"{self.name}.log"
+                file_handler = logging.FileHandler(file_path, mode="a")
+                file_handler.setFormatter(formatter)
+                logger.addHandler(file_handler)
+            except Exception:
+                # Fallback – ignore file handler errors to avoid crashing agent
+                pass
         
         return logger
     

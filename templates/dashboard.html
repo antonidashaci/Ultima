@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTIMA Dashboard - Real-time Monitoring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4757;
+        }
+
+        .status-dot.running {
+            background: #2ed573;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            margin-top: 0.5rem;
+        }
+
+        .task-list {
+            grid-column: span 2;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid #00d4ff;
+        }
+
+        .task-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffa502;
+        }
+
+        .task-status.completed {
+            background: #2ed573;
+        }
+
+        .task-status.failed {
+            background: #ff4757;
+        }
+
+        .task-status.in_progress {
+            background: #00d4ff;
+        }
+
+        .task-info {
+            flex: 1;
+        }
+
+        .task-description {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .task-meta {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #00d4ff;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #00b8e6;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger {
+            background: #ff4757;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: #ff3838;
+        }
+
+        .create-task-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #a0a0a0;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #1e1e2f;
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h4 { margin-bottom:1rem; color:#00d4ff; }
+        .modal pre {
+            background:#000; padding:1rem; border-radius:6px; color:#0f0; max-height:300px; overflow:auto;
+        }
+        .close-btn { float:right; cursor:pointer; }
+        /* end modal css */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 ULTIMA Dashboard</h1>
+        <div class="status-bar">
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Checking...</span>
+            </div>
+            <div class="status-indicator">
+                <span id="taskCount">0 Tasks</span>
+            </div>
+            <div class="status-indicator">
+                <span id="lastUpdate">Never</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <button class="btn btn-primary" id="startUltima">Start ULTIMA</button>
+            <button class="btn btn-danger" id="stopUltima">Stop ULTIMA</button>
+            <button class="btn btn-secondary" id="refreshData">Refresh</button>
+            <button class="btn btn-secondary" id="toggleCreateTask">Create Task</button>
+        </div>
+
+        <div class="create-task-form hidden" id="createTaskForm">
+            <h3>Create New Task</h3>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskDescription">Task Description</label>
+                    <textarea id="taskDescription" placeholder="Describe what you want ULTIMA to do..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="taskType">Task Type</label>
+                    <select id="taskType" required>
+                        <option value="code_generation">Code Generation</option>
+                        <option value="testing">Testing</option>
+                        <option value="file_operation">File Operation</option>
+                        <option value="web_development">Web Development</option>
+                        <option value="desktop_application">Desktop Application</option>
+                        <option value="mobile_development">Mobile Development</option>
+                        <option value="api_development">API Development</option>
+                        <option value="data_analysis">Data Analysis</option>
+                        <option value="system_administration">System Administration</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority" required>
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Task</button>
+            </form>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>📊 System Statistics</h3>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="loading pulse">Loading...</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🤖 Active Agents</h3>
+                <div id="agentsList">
+                    <div class="loading pulse">Loading...</div>
+                </div>
+            </div>
+
+            <div class="card task-list">
+                <h3>📋 Recent Tasks</h3>
+                <div id="tasksList">
+                    <div class="loading pulse">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">✖</span>
+            <h4 id="modalTitle">Task Detail</h4>
+            <p id="modalBody"></p>
+            <h4>Log</h4>
+            <pre id="modalLog">Loading...</pre>
+        </div>
+    </div>
+
+    <script>
+        let refreshInterval;
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboard();
+            startAutoRefresh();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('startUltima').addEventListener('click', startUltima);
+            document.getElementById('stopUltima').addEventListener('click', stopUltima);
+            document.getElementById('refreshData').addEventListener('click', loadDashboard);
+            document.getElementById('toggleCreateTask').addEventListener('click', toggleCreateTaskForm);
+            document.getElementById('taskForm').addEventListener('submit', createTask);
+        }
+
+        function startAutoRefresh() {
+            refreshInterval = setInterval(loadDashboard, 3000); // Refresh every 3 seconds
+        }
+
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+        }
+
+        async function loadDashboard() {
+            try {
+                const [statusResponse, tasksResponse] = await Promise.all([
+                    fetch('/api/status'),
+                    fetch('/api/tasks')
+                ]);
+
+                const status = await statusResponse.json();
+                const tasks = await tasksResponse.json();
+
+                updateStatusBar(status);
+                updateStats(status);
+                updateAgents(status);
+                updateTasks(tasks);
+                
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        function updateStatusBar(status) {
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            const taskCount = document.getElementById('taskCount');
+
+            if (status.ultima_status.running) {
+                statusDot.classList.add('running');
+                statusText.textContent = `Running (PID: ${status.ultima_status.pid})`;
+            } else {
+                statusDot.classList.remove('running');
+                statusText.textContent = 'Stopped';
+            }
+
+            taskCount.textContent = `${status.total_tasks} Tasks`;
+        }
+
+        function updateStats(status) {
+            const statsGrid = document.getElementById('statsGrid');
+            const stats = [
+                { label: 'Total Tasks', value: status.total_tasks },
+                { label: 'Completed', value: status.status_counts.completed || 0 },
+                { label: 'In Progress', value: status.status_counts.in_progress || 0 },
+                { label: 'Pending', value: status.status_counts.pending || 0 }
+            ];
+
+            statsGrid.innerHTML = stats.map(stat => `
+                <div class="stat-item">
+                    <div class="stat-value">${stat.value}</div>
+                    <div class="stat-label">${stat.label}</div>
+                </div>
+            `).join('');
+        }
+
+        function updateAgents(status) {
+            const agentsList = document.getElementById('agentsList');
+            const agents = Object.entries(status.agent_counts);
+
+            if (agents.length === 0) {
+                agentsList.innerHTML = '<div class="loading">No active agents</div>';
+                return;
+            }
+
+            agentsList.innerHTML = agents.map(([agent, count]) => `
+                <div class="task-item">
+                    <div class="task-status completed"></div>
+                    <div class="task-info">
+                        <div class="task-description">🤖 ${agent}</div>
+                        <div class="task-meta">${count} tasks processed</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateTasks(tasks) {
+            const tasksList = document.getElementById('tasksList');
+
+            if (tasks.length === 0) {
+                tasksList.innerHTML = '<div class="loading">No tasks found</div>';
+                return;
+            }
+
+            tasksList.innerHTML = tasks.slice(0, 10).map(task => `
+                <div class="task-item" data-id="${task.id}">
+                    <div class="task-status ${task.status || 'pending'}"></div>
+                    <div class="task-info">
+                        <div class="task-description">${task.description || task.task_description || 'No description'}</div>
+                        <div class="task-meta">
+                            ${task.agent} • ${task.source} • ${formatTime(task.created_at || task.timestamp)}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            attachTaskClickHandlers();
+        }
+
+        function formatTime(timestamp) {
+            if (!timestamp) return 'Unknown';
+            try {
+                return new Date(timestamp).toLocaleTimeString();
+            } catch {
+                return timestamp;
+            }
+        }
+
+        async function startUltima() {
+            try {
+                const response = await fetch('/api/ultima/start', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    setTimeout(loadDashboard, 2000); // Refresh after 2 seconds
+                } else {
+                    alert('Failed to start ULTIMA: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error starting ULTIMA: ' + error.message);
+            }
+        }
+
+        async function stopUltima() {
+            try {
+                const response = await fetch('/api/ultima/stop', { method: 'POST' });
+                const result = await response.json();
+                
+                if (result.success) {
+                    setTimeout(loadDashboard, 1000); // Refresh after 1 second
+                } else {
+                    alert('Failed to stop ULTIMA: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error stopping ULTIMA: ' + error.message);
+            }
+        }
+
+        function toggleCreateTaskForm() {
+            const form = document.getElementById('createTaskForm');
+            form.classList.toggle('hidden');
+        }
+
+        async function createTask(event) {
+            event.preventDefault();
+            
+            const description = document.getElementById('taskDescription').value;
+            const type = document.getElementById('taskType').value;
+            const priority = document.getElementById('taskPriority').value;
+
+            try {
+                const response = await fetch('/api/tasks/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        description: description,
+                        type: type,
+                        priority: priority
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Reset form
+                    document.getElementById('taskForm').reset();
+                    document.getElementById('createTaskForm').classList.add('hidden');
+                    
+                    // Refresh dashboard
+                    setTimeout(loadDashboard, 1000);
+                } else {
+                    alert('Failed to create task: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error creating task: ' + error.message);
+            }
+        }
+
+        document.getElementById('closeModal').addEventListener('click',()=>{
+            document.getElementById('taskModal').style.display='none';
+        });
+
+        function attachTaskClickHandlers(){
+            document.querySelectorAll('.task-item').forEach(el=>{
+                el.onclick = ()=>{
+                    const id = el.dataset.id;
+                    showTaskModal(id);
+                }
+            });
+        }
+
+        async function showTaskModal(id){
+            try{
+                const [taskRes, logRes] = await Promise.all([
+                    fetch(`/api/task/${id}`),
+                    fetch(`/api/task/${id}/log`)
+                ]);
+                const task = await taskRes.json();
+                const logJson = await logRes.json();
+                document.getElementById('modalTitle').textContent = `Task ${id}`;
+                let body = `Status: ${task.status}\nAgent: ${task.agent}\nDescription: ${task.description}`;
+                if(task.metadata && task.metadata.result){
+                    const res = task.metadata.result;
+                    if(res.analysis_path){
+                        body += `\nAnalysis: ${res.analysis_path}`;
+                    }
+                    if(res.path){
+                        body += `\nOutput Path: ${res.path}`;
+                    }
+                    if(res.app_path){
+                        body += `\nApp Path: ${res.app_path}`;
+                    }
+                    if(res.entry_file){
+                        body += `\nEntry File: ${res.entry_file}`;
+                    }
+                    if(res.executable){
+                        body += `\nExecutable: ${res.executable}`;
+                    } else if(Object.keys(res).length){
+                        body += `\nResult: ${JSON.stringify(res)}`;
+                    }
+                }
+                document.getElementById('modalBody').textContent = body;
+                document.getElementById('modalLog').textContent = (logJson.log||[]).join('');
+                document.getElementById('taskModal').style.display='flex';
+            }catch(e){alert('Failed to load task detail');}
+        }
+    </script>
+</body>
+</html> 

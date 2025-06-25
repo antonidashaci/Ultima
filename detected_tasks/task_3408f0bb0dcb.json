@@ -1,0 +1,15 @@
+{
+  "id": "3408f0bb0dcb",
+  "status": "pending",
+  "created_at": 1750885235.6903872,
+  "description": "Create a portfolio website",
+  "type": "web_development",
+  "priority": "high",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_web_agent.py",
+    "source_line": 239,
+    "raw_comment": "\"# #AI_TASK: Create a portfolio website [priority:high] [type:web_development]\",",
+    "priority": "high",
+    "type": "web_development"
+  }
+}

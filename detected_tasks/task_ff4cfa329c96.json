@@ -1,0 +1,15 @@
+{
+  "id": "ff4cfa329c96",
+  "status": "pending",
+  "created_at": 1750885235.6908543,
+  "description": "Design a landing page for startup",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_web_agent.py",
+    "source_line": 241,
+    "raw_comment": "\"# #AI_TASK: Design a landing page for startup [priority:medium] [type:web_development]\"",
+    "priority": "medium",
+    "type": "web_development"
+  }
+}

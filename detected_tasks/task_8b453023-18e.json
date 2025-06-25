@@ -1,0 +1,9 @@
+{
+  "id": "8b453023-18e2-44b8-8cd4-0885cc34cdfd",
+  "description": "create a calculator desktop application",
+  "task_type": "desktop_application",
+  "priority": "medium",
+  "status": "pending",
+  "created_at": "2025-06-25T23:54:13.601691",
+  "source": "dashboard"
+}

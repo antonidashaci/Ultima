@@ -1,0 +1,9 @@
+{
+  "id": "4dd9c1a3-f0f4-4bf8-91a7-54461c7fe00a",
+  "description": "build a standalone app for yourself",
+  "task_type": "desktop_application",
+  "priority": "high",
+  "status": "pending",
+  "created_at": "2025-06-25T21:27:17.075603",
+  "source": "dashboard"
+}

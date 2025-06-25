@@ -8,12 +8,19 @@ import asyncio
 import signal
 import sys
 from pathlib import Path
+import threading
+import json
 
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
 
 from agents.orchestrator import NeoOrchestrator
 from agents.file_agent import FileAgent
+from cursor_bridge.task_detector import CursorTaskDetector
+from agents.desktop_agent import DesktopAgent
+from agents.planner_agent import PlannerAgent
+from agents.coder_agent import CoderAgent
+from agents.tester_agent import TesterAgent
 
 
 class UltimaRunner:
@@ -31,16 +38,45 @@ class UltimaRunner:
         
         # Register agent classes
         self.orchestrator.register_agent_class("file", FileAgent)
+        self.orchestrator.register_agent_class("desktop", DesktopAgent)
+        self.orchestrator.register_agent_class("planning", PlannerAgent)
+        self.orchestrator.register_agent_class("coder", CoderAgent)
+        self.orchestrator.register_agent_class("tester", TesterAgent)
         
         # Spawn initial agents
         file_agent = await self.orchestrator.spawn_agent("file", "file_agent_01")
+        desktop_agent = await self.orchestrator.spawn_agent("desktop", "desktop_agent_01")
+        planner_agent = await self.orchestrator.spawn_agent("planning", "planner_agent_01")
+        coder_agent = await self.orchestrator.spawn_agent("coder", "coder_agent_01")
+        tester_agent = await self.orchestrator.spawn_agent("tester", "tester_agent_01")
         
         # Start agents
         await self.orchestrator.start_agent("file_agent_01")
+        await self.orchestrator.start_agent("desktop_agent_01")
+        await self.orchestrator.start_agent("planner_agent_01")
+        await self.orchestrator.start_agent("coder_agent_01")
+        await self.orchestrator.start_agent("tester_agent_01")
         
         print("✅ ULTIMA Framework initialized")
         print("📋 Available capabilities:", list(self.orchestrator.capabilities.keys()))
     
+    def start_task_detector(self):
+        """Starts the task detector to watch for new tasks."""
+        print("👀 Starting Task Detector...")
+        
+        # The detector writes to detected_tasks, which the orchestrator will read from.
+        detector = CursorTaskDetector(
+            workspace_path=self.workspace_path,
+            output_dir=self.workspace_path / "detected_tasks"
+        )
+        
+        # start_monitoring is a blocking call, so run it in a separate thread.
+        detector_thread = threading.Thread(target=detector.start_monitoring, daemon=True)
+        detector_thread.start()
+        
+        print("✅ Task Detector is running in the background.")
+        return detector_thread
+
     async def demo_tasks(self):
         """Run demonstration tasks"""
         print("\n🧪 Running demonstration tasks...")
@@ -122,6 +158,36 @@ class UltimaRunner:
         print(f"\n📨 Received signal {signum}")
         asyncio.create_task(self.shutdown())
     
+    async def ingest_detected_tasks(self):
+        """Periodically scans detected_tasks directory and ingests new tasks."""
+        processed_files = set()
+        tasks_dir = self.workspace_path / "detected_tasks"
+        tasks_dir.mkdir(exist_ok=True)
+        
+        while self.running:
+            for file_path in tasks_dir.glob("task_*.json"):
+                if file_path in processed_files:
+                    continue
+                try:
+                    with open(file_path, 'r') as f:
+                        task_json = json.load(f)
+                    task_type = task_json.get('type') or task_json.get('task_type') or 'general'
+                    description = task_json.get('description', 'No description')
+                    metadata = task_json.get('metadata', {})
+                    await self.orchestrator.execute_task(task_type, description, metadata)
+                    processed_files.add(file_path)
+                except Exception as e:
+                    print(f"⚠️ Failed to ingest task file {file_path}: {e}")
+            await asyncio.sleep(2)
+
+    async def bus_listener(self):
+        from bus import bus
+        while self.running:
+            async for msg in bus.subscribe():
+                if not self.running:
+                    break
+                await self.orchestrator.execute_task(msg["type"], msg["description"], msg.get("metadata"))
+
     async def run(self):
         """Main run loop"""
         # Setup signal handlers
@@ -135,20 +201,25 @@ class UltimaRunner:
             # Run demo tasks
             await self.demo_tasks()
             
-            # Start status monitoring
+            # Start status monitoring and task detector
             monitor_task = asyncio.create_task(self.status_monitor())
+            detector_thread = self.start_task_detector()
+            ingest_task = asyncio.create_task(self.ingest_detected_tasks())
+            bus_task = asyncio.create_task(self.bus_listener())
             
-            # Run for demo period
-            print("\n⏰ Running for 30 seconds... Press Ctrl+C to stop early")
-            try:
-                await asyncio.sleep(30)
-            except KeyboardInterrupt:
-                pass
-            
-            # Cancel monitoring
-            monitor_task.cancel()
-            
+            # Run indefinitely until stopped
+            print("\n🚀 ULTIMA is running. Press Ctrl+C to stop.")
+            while self.running:
+                await asyncio.sleep(1)
+
         finally:
+            if 'monitor_task' in locals() and not monitor_task.done():
+                monitor_task.cancel()
+            if 'ingest_task' in locals() and not ingest_task.done():
+                ingest_task.cancel()
+            if 'bus_task' in locals() and not bus_task.done():
+                bus_task.cancel()
+            
             await self.shutdown()
 
 

@@ -1,0 +1,9 @@
+{
+  "id": "462ffc2b-645f-499c-abe4-ebd40d4b572f",
+  "description": "build a simple hello window",
+  "task_type": "desktop_application",
+  "priority": "medium",
+  "status": "pending",
+  "created_at": "2025-06-25T21:51:24.967721",
+  "source": "dashboard"
+}

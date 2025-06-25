@@ -1,0 +1,14 @@
+{
+  "id": "c66ac2bc2f04",
+  "status": "pending",
+  "created_at": 1750885235.6941757,
+  "description": "Build a password generator with security options",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/password_generator_demo.py",
+    "source_line": 24,
+    "raw_comment": "cursor_comment = \"# #AI_TASK: Build a password generator with security options [type:web_development]\"",
+    "type": "web_development"
+  }
+}

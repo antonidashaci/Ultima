@@ -1,0 +1,16 @@
+{
+  "id": "bb8cfb91-cf5a-4ac5-8b13-bff22ae9508e",
+  "type": "code_generation",
+  "description": " Generate demo code file",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T22:51:59.411010",
+  "updated_at": "2025-06-25T22:51:59.619683",
+  "metadata": {
+    "result": {
+      "created": "/home/emre/Ultima/workspace/coder_output/bb8cfb91_output.txt"
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

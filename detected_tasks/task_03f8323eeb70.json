@@ -1,0 +1,14 @@
+{
+  "id": "03f8323eeb70",
+  "status": "pending",
+  "created_at": 1750885235.6905482,
+  "description": "Build a todo application with modern UI",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/test_web_agent.py",
+    "source_line": 240,
+    "raw_comment": "\"// #AI_TASK: Build a todo application with modern UI [type:web_development]\",",
+    "type": "web_development"
+  }
+}

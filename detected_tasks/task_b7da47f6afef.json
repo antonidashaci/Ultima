@@ -1,0 +1,14 @@
+{
+  "id": "b7da47f6afef",
+  "status": "pending",
+  "created_at": 1750885235.693591,
+  "description": "Build a QR code generator and scanner",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 17,
+    "raw_comment": "# #AI_TASK: Build a QR code generator and scanner [type:web_development]",
+    "type": "web_development"
+  }
+}

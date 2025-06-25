@@ -1,0 +1,14 @@
+{
+  "id": "4e54e41550f2",
+  "status": "pending",
+  "created_at": 1750885235.693811,
+  "description": "Create",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 21,
+    "raw_comment": "# #AI_TASK: Create [YOUR APP IDEA HERE] [type:web_development]",
+    "type": "web_development"
+  }
+}

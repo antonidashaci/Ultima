@@ -1,0 +1,14 @@
+{
+  "id": "88d9e7cb3f84",
+  "status": "pending",
+  "created_at": 1750885235.6926,
+  "description": "Create a weather app with current conditions",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 11,
+    "raw_comment": "# #AI_TASK: Create a weather app with current conditions [type:web_development]",
+    "type": "web_development"
+  }
+}

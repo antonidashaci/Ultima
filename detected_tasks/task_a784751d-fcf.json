@@ -1,0 +1,9 @@
+{
+  "id": "a784751d-fcf0-4a05-84b6-c5225fd6c04b",
+  "description": "Create a simple Python calculator script",
+  "task_type": "file_create",
+  "priority": "high",
+  "status": "pending",
+  "created_at": "2025-06-25T21:14:11.537395",
+  "source": "test_script"
+}

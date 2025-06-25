@@ -1,0 +1,14 @@
+{
+  "id": "b7a3e95da095",
+  "status": "pending",
+  "created_at": 1750885235.6934738,
+  "description": "Create a color palette generator for designers",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 16,
+    "raw_comment": "# #AI_TASK: Create a color palette generator for designers [type:web_development]",
+    "type": "web_development"
+  }
+}

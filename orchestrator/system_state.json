@@ -1,12 +1,16 @@
 {
   "system_state": {
-    "started_at": "2025-06-24T23:35:15.957026",
-    "total_tasks": 4,
+    "started_at": "2025-06-25T23:53:48.131980",
+    "total_tasks": 65,
     "completed_tasks": 0,
     "failed_tasks": 0
   },
   "agents": [
-    "file_agent_01"
+    "file_agent_01",
+    "desktop_agent_01",
+    "planner_agent_01",
+    "coder_agent_01",
+    "tester_agent_01"
   ],
   "capabilities": {
     "file_create": [
@@ -84,6 +88,30 @@
     "git_push": [
       {
         "agent": "file_agent_01",
+        "priority": 1
+      }
+    ],
+    "desktop_application": [
+      {
+        "agent": "desktop_agent_01",
+        "priority": 1
+      }
+    ],
+    "planning": [
+      {
+        "agent": "planner_agent_01",
+        "priority": 1
+      }
+    ],
+    "code_generation": [
+      {
+        "agent": "coder_agent_01",
+        "priority": 1
+      }
+    ],
+    "testing": [
+      {
+        "agent": "tester_agent_01",
         "priority": 1
       }
     ]

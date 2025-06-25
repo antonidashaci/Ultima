@@ -1,0 +1,18 @@
+{
+  "id": "896f9a60-deaa-4fde-b1ca-3adaf112f891",
+  "type": "dir_create",
+  "description": "Create demo directory structure",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T21:10:21.289212",
+  "updated_at": "2025-06-25T21:10:21.713695",
+  "metadata": {
+    "path": "/home/emre/Ultima/workspace/demo_project/src",
+    "result": {
+      "path": "/home/emre/Ultima/workspace/demo_project/src",
+      "created": true
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

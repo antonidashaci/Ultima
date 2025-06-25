@@ -1,0 +1,14 @@
+{
+  "id": "dd8b18a4f9d8",
+  "status": "pending",
+  "created_at": 1750885235.6933753,
+  "description": "Build a markdown editor with live preview",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 15,
+    "raw_comment": "# #AI_TASK: Build a markdown editor with live preview [type:web_development]",
+    "type": "web_development"
+  }
+}

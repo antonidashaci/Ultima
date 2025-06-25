@@ -1,0 +1,17 @@
+{
+  "id": "759d0f2b-b604-4f9b-b8a3-892b46c38929",
+  "type": "desktop_application",
+  "description": "build a standalone app for yourself",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T21:53:22.614694",
+  "updated_at": "2025-06-25T21:53:24.227629",
+  "metadata": {
+    "result": {
+      "app_path": "/home/emre/Ultima/workspace/build_a_standalone_app_for_you",
+      "entry_file": "/home/emre/Ultima/workspace/build_a_standalone_app_for_you/app.py"
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

@@ -1,0 +1,17 @@
+{
+  "id": "a5689824-a9f9-41e1-a7fa-d579a35afa1a",
+  "type": "code_generation",
+  "description": " Generate demo code file",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-26T00:00:35.832165",
+  "updated_at": "2025-06-26T00:00:43.176898",
+  "metadata": {
+    "result": {
+      "path": "/home/emre/Ultima/workspace/output/code/a5689824_output.txt",
+      "created": true
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

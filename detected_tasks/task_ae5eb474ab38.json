@@ -1,0 +1,14 @@
+{
+  "id": "ae5eb474ab38",
+  "status": "pending",
+  "created_at": 1750885235.6931822,
+  "description": "Create a recipe manager with search functionality",
+  "type": "web_development",
+  "priority": "medium",
+  "metadata": {
+    "source_file": "/home/emre/Ultima/live_demo_request.py",
+    "source_line": 14,
+    "raw_comment": "# #AI_TASK: Create a recipe manager with search functionality [type:web_development]",
+    "type": "web_development"
+  }
+}

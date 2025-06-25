@@ -1,0 +1,17 @@
+{
+  "id": "d597985d-3ebd-46ce-bb22-6be3ef673ac6",
+  "type": "desktop_application",
+  "description": "Hello Window App",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T22:56:36.006700",
+  "updated_at": "2025-06-25T22:56:36.618723",
+  "metadata": {
+    "result": {
+      "app_path": "/home/emre/Ultima/workspace/Hello_Window_App",
+      "entry_file": "/home/emre/Ultima/workspace/Hello_Window_App/app.py"
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}

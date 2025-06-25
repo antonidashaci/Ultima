@@ -1,0 +1,17 @@
+{
+  "id": "afccb302-6c6c-4e6f-ac16-ab4e9bf6e736",
+  "type": "desktop_application",
+  "description": "Create a calculator desktop application\u201d",
+  "priority": 1,
+  "status": "completed",
+  "created_at": "2025-06-25T23:53:49.277217",
+  "updated_at": "2025-06-25T23:53:53.141471",
+  "metadata": {
+    "result": {
+      "app_path": "/home/emre/Ultima/workspace/Create_a_calculator_desktop_ap",
+      "entry_file": "/home/emre/Ultima/workspace/Create_a_calculator_desktop_ap/calculator.py"
+    }
+  },
+  "dependencies": [],
+  "output_path": null
+}
